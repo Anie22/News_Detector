@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from django.contrib.auth import authenticate, logout
+from django.contrib.auth import authenticate, login, logout
 from account.models import UserModel
 
 # Create your views here.
@@ -42,7 +42,8 @@ def loginView(request):
         password = request.POST.get('password')
 
         User = authenticate(request, email=email, password=password)
-        if User:
+        if User is not None:
+            login(request, User)
             return JsonResponse({'message': 'Login successfully'}, status=200)
             return redirect('news:news_app')
         return JsonResponse({'message': 'User does not exist'}, status=404)
