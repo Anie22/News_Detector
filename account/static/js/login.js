@@ -48,7 +48,7 @@ form.addEventListener('submit', (e) => {
                 msg.textContent = data.message
             }
 
-            if (data.status === 200) {
+            if (data.message === 'Login successfully') {
                 // Redirect to the news validation form page if login was successful
                 window.location.href = '/detect-fake-news';
             }
