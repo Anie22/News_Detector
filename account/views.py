@@ -44,7 +44,10 @@ def loginView(request):
         User = authenticate(request, email=email, password=password)
         if User:
             return JsonResponse({'message': 'Login successfully'}, status=200)
+            return redirect('/')
         return JsonResponse({'message': 'User does not exist'}, status=404)
+    if request.user.is_authenticated:
+        return redirect('/')
     return render(request, 'login.html')
 
 def logout_view(request):
