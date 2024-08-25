@@ -50,7 +50,7 @@ form.addEventListener('submit', (e) => {
 
             if (data.status === 200) {
                 // Redirect to the news validation form page if login was successful
-                window.location.href = '/';
+                window.location.href = '/detect-fake-news';
             }
         })
         .catch(error => console.error('Error:', error));
