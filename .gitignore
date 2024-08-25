@@ -1,0 +1,6 @@
+boss/
+__pycache__/
+.env
+migrations/
+.DS_Store
+node/
