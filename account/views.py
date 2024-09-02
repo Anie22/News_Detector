@@ -13,10 +13,6 @@ def register(request):
         password = request.POST.get('password')
         password2 = request.POST.get('password2')
 
-
-        if request.user.is_authenticated:
-            return redirect('')
-
         userN = UserModel.objects.filter(user_name=user_name).exists()
 
         mail = UserModel.objects.filter(email=email).exists()
@@ -38,6 +34,10 @@ def register(request):
             )
             user.save()
             return JsonResponse({'message': 'Sign up successfully'}, status=201)
+
+    if request.user.is_authenticated:
+        return redirect('news:news_app')
+
     return render(request, 'signup.html')
 
 def loginView(request):
@@ -46,14 +46,15 @@ def loginView(request):
         password = request.POST.get('password')
 
         User = authenticate(request, email=email, password=password)
-
-        if User.is_authenticated:
-            return redirect('')
-
-        if User:
+        if User is not None:
             login(request, User)
             return JsonResponse({'message': 'Login successfully'}, status=200)
+            return redirect('news:news_app')
         return JsonResponse({'message': 'User does not exist'}, status=404)
+
+    if request.user.is_authenticated:
+        return redirect('news:news_app')
+
     return render(request, 'login.html')
 
 def logout_view(request):
