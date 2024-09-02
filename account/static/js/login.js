@@ -1,10 +1,10 @@
 const form = document.getElementById('form');
 const email = document.getElementById('email');
 const password = document.getElementById('password');
-const error3 = document.getElementById('warning3');
-const error4 = document.getElementById('warning4');
-const model = document.getElementById('model')
-const msg = document.getElementById('msg')
+const error = document.getElementById('warning');
+const error2 = document.getElementById('warning2');
+const model = document.getElementById('model');
+const msg = document.getElementById('msg');
 
 model.style.display = 'none'
 
@@ -15,14 +15,14 @@ form.addEventListener('submit', (e) => {
 
     /* checks if the input is empty */
     if(email.value.trim() === '') {
-        error3.textContent = 'Input Required';
+        error.textContent = 'Input Required';
         hasError = true;
     } else {
         error3.textContent = '';
     }
 
     if(password.value.trim() === '') {
-        error4.textContent = 'Input Required';
+        error2.textContent = 'Input Required';
         hasError = true;
     } else {
         error4.textContent = '';
@@ -59,9 +59,9 @@ form.addEventListener('submit', (e) => {
 
 /* removes the error message on input */
 email.addEventListener('input', function() {
-    error3.textContent = '';
+    error.textContent = '';
 });
 
 password.addEventListener('input', function() {
-    error4.textContent = '';
+    error2.textContent = '';
 });

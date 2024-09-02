@@ -9,18 +9,27 @@ from news.detection import *
 @login_required(login_url='/account/login')
 def NewsDetection(request):
     if request.method == 'POST':
+        user = request.user
         news_heading = request.POST.get('news_heading')
         news_source = request.POST.get('news_source')
         news_url = request.POST.get('news_url')
 
-        user = request.user
+        heading = NewsDetector.objects.filter(news_heading=news_heading).exists()
+        source = NewsDetector.objects.filter(news_source=news_source).exists()
+        url = NewsDetector.objects.filter(news_url=news_url).exists()
 
-        if news_heading and news_source and news_url:
-            news = NewsDetector.objects.create(news_heading=news_heading, news_source=news_source, news_url=news_url, user=user)
-            if news_url:
+        if user:
+            if heading and source and url:
+                return JsonResponse({'message':'This content have already been verified by you check history'}, status=404)
+            else:
+                news = NewsDetector.objects.create(news_heading=news_heading, news_source=news_source, news_url=news_url, user=user)
                 news.content = get_content_from_link(news_url)
-            news.save()
-            # messages.success(request, 'Form submitted successfully, await verification')
-
+                news.save()
+                return JsonResponse({'message':'Saved and under verification'}, status=201)
     return render(request, 'news.html')
 
+def history(request):
+    return render(request, 'history.html')
+
+def results(request):
+    return render(request, 'results.html')

@@ -1,0 +1,109 @@
+body,
+.con{
+    height: 100vh !important;
+}
+html{
+    height: 100vh !important;
+}
+.form-container{
+    height: fit-content !important;
+}
+.header-holder{
+    height: 60px;
+}
+input,
+button{
+    height: 45px !important;
+}
+input::placeholder{
+    font-size: 13px;
+}
+label{
+    font-size: 14px !important;
+}
+.warning{
+    font-size: 13px;
+}
+fieldset{
+    background-color: whitesmoke !important;
+}
+.model-box{
+    height: 60px !important;
+    animation: slide 5s linear;
+    transition: all 2s linear;
+}
+@keyframes slide {
+    0%{
+        margin-right: -500px;
+    }
+    50%{
+        margin-right: -250px;
+    }
+    100%{
+        margin-right: 0px;
+    }
+}
+.navbar-toggler:focus{
+    outline: none !important;
+    border: none !important;
+}
+.body-text{
+    color: wheat !important;
+    font-size: 13px !important;
+}
+.loader{
+    height: 45px !important;
+    background: rgba(255, 187, 0, 0.916);
+    transition: all 2s ease-in;
+}
+.loader-box{
+    background: #00000027;
+    height: inherit;
+}
+.load{
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    border-right: 4px solid #ffffff;
+    border-top: 4px solid #ffffff;
+    border-left: 4px solid #ffffff;
+    border-bottom: 4px solid transparent;
+    animation: spinLoad 1s infinite linear;
+}
+@keyframes spinLoad {
+    0%{
+        transform: rotate(0deg);
+    } 25%{
+        transform: rotate(90deg);
+        border-left: 4px solid transparent;
+        border-bottom: 4px solid #ffffff;
+    } 50%{
+        transform: rotate(180deg);
+        border-top: 4px solid transparent;
+        border-left: 4px solid #ffffff;
+        border-bottom: 4px solid #ffffff;
+    } 75%{
+        transform: rotate(270deg);
+        border-right: 4px solid transparent;
+        border-top: 4px solid #ffffff;
+        border-left: 4px solid #ffffff;
+        border-bottom: 4px solid #ffffff;
+    } 100%{
+        transform: rotate(360deg);
+    }
+}
+@media only screen and (max-width: 350px) {
+    .text-fs{
+        font-size: 15px;
+    }
+    .form-container,
+    .con{
+        height: 100% !important;
+    }
+    body{
+        height: fit-content !important;
+    }
+    .link{
+       font-size: 10px !important;
+    }
+}

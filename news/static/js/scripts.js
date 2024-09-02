@@ -19,6 +19,8 @@ const autoGreet = () => {
         greetings.textContent = 'Good Afternoon'
     } else if(currentTime >= 16 && currentTime <= 21){
         greetings.textContent = 'Good Evening'
+    } else {
+        greetings.textContent = 'Good Night'
     }
 }
 
