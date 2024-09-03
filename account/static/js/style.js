@@ -59,8 +59,27 @@ form.addEventListener('submit', (e) => {
             }
 
             if (data.message === 'Login successfully') {
-                // Redirect to the news validation form page if login was successful
-                window.location.href = '';
+
+                const autoRedirect = setTimeout(() => {
+                    model.style.display = 'none'
+                    // Redirect to the news validation form page if login was successful
+                    window.location.href = '';
+                }, 2000);
+
+                autoRedirect();
+
+                return () => clearTimeout();
+            }
+
+            if (data.message !== 'Login successfully') {
+
+                const autoRedirect = setTimeout(() => {
+                    model.style.display = 'none'
+                }, 2000);
+
+                autoRedirect();
+
+                return () => clearTimeout();
             }
         })
         .catch(error => console.error('Error:', error));

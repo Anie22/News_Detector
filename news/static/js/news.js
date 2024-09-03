@@ -68,10 +68,29 @@ form.addEventListener('submit', (e) => {
                 buttonHolder.innerHTML = `<button type="submit" class="bg-warning border-0 rounded-3 button col-12 fs-5 fw-semibold">Submit</button>`
             }
 
-            // if (data.message === 'Saved and under verification') {
-            //     // Redirect to the news validation form page if login was successful
-            //     window.location.href = '/';
-            // }
+            if (data.message === 'Saved and under verification') {
+
+                const autoRedirect = setTimeout(() => {
+                    model.style.display = 'none'
+                    // Redirect to the news validation form page if login was successful
+                    window.location.href = '/results';
+                }, 2000);
+
+                autoRedirect();
+
+                return () => clearTimeout();
+            }
+
+            if (data.message !== 'Saved and under verification') {
+
+                const autoRedirect = setTimeout(() => {
+                    model.style.display = 'none'
+                }, 2000);
+
+                autoRedirect();
+
+                return () => clearTimeout();
+            }
         })
         .catch(error => console.error('Error:', error));
     }

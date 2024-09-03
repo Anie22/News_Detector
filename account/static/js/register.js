@@ -84,7 +84,6 @@ form.addEventListener('submit', (e) => {
                     model.style.display = 'none'
                     // Redirect to login page if registration was successful
                     window.location.href = '/account/login/';
-                    console.log(111)
                 }, 2000);
 
                 autoRedirect();
@@ -96,7 +95,6 @@ form.addEventListener('submit', (e) => {
 
                 const autoRedirect = setTimeout(() => {
                     model.style.display = 'none'
-                    console.log(111)
                 }, 2000);
 
                 autoRedirect();
