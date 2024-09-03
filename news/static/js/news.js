@@ -73,8 +73,8 @@ form.addEventListener('submit', (e) => {
                 const autoRedirect = setTimeout(() => {
                     model.style.display = 'none'
                     // Redirect to the news validation form page if login was successful
-                    window.location.href = '/results';
-                }, 2000);
+                    window.location.href = '/result';
+                }, 3500);
 
                 autoRedirect();
 
@@ -85,7 +85,7 @@ form.addEventListener('submit', (e) => {
 
                 const autoRedirect = setTimeout(() => {
                     model.style.display = 'none'
-                }, 2000);
+                }, 7000);
 
                 autoRedirect();
 
