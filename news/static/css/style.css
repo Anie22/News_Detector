@@ -94,6 +94,9 @@ fieldset{
 .cont{
     height: 67.7vh;
 }
+.check span{
+    font-size: 15px;
+}
 @media only screen and (max-width: 350px) {
     .text-fs{
         font-size: 15px;

@@ -23,9 +23,9 @@
                         <div class="row mx-0 gap-2 col-12 border rounded-3 py-2">
                             {% for previous_verification in previous_verifications %}
                                 <div class="row mx-0 col-12 p-0">
-                                    <div class="col-12 text-warning text-capitalize text-end fw-bold fs-5 m-0">
+                                    <!-- <div class="col-12 text-warning text-capitalize text-end fw-bold fs-5 m-0">
                                         <span class="m-0">True</span>
-                                    </div>
+                                    </div> -->
                                     <div class="row m-0 p-0 gap-2 col-12">
                                         <div class="col-12 d-flex align-items-lg-center align-items-start flex-column flex-lg-row gap-2 p-0 px-lg-1">
                                             <h5 class="text-white fw-normal fs-5 text-capitalize m-0">News title :</h5>
@@ -47,6 +47,10 @@
                                             <h5 class="text-white fw-normal fs-5 text-capitalize m-0">news validation result :</h5>
                                             <span class="m-0 text-capitalize col-lg-8 col-12 body-text">{{ previous_verification.news_result }}</span>
                                         </div>
+                                    </div>
+                                    <div class="col-12 text-white text-capitalize text-end fw-bold check m-0">
+                                        <h4 class="fs-5 fw-bold">Checked on :</h4>
+                                        <span class="m-0">{{ previous_verification.checked_on }}</span>
                                     </div>
                                 </div>
                                 <hr class="text-white my-2">
