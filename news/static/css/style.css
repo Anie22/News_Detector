@@ -1,4 +1,3 @@
-body,
 .con{
     height: 100vh !important;
 }
@@ -93,7 +92,7 @@ fieldset{
     }
 }
 .cont{
-    height: 100%;
+    height: 67.7vh;
 }
 @media only screen and (max-width: 350px) {
     .text-fs{
@@ -102,6 +101,9 @@ fieldset{
     .form-container,
     .con{
         height: 100% !important;
+    }
+    .cont{
+        height: 54vh;
     }
     body{
         height: fit-content !important;
