@@ -92,6 +92,9 @@ fieldset{
         transform: rotate(360deg);
     }
 }
+.cont{
+    height: 100%;
+}
 @media only screen and (max-width: 350px) {
     .text-fs{
         font-size: 15px;
