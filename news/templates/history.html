@@ -16,41 +16,47 @@
                     </div>
                 </div>
                 <div class="row gap-2 px-lg-2 p-0 col-lg-9 col-12 py-2">
-                    <div class="col-12">
-                        <h3 class="fs-4 text-capitalize text-center m-0 text-white fw-bold">Recent news validation history</h3>
-                    </div>
-                    <div class="row mx-0 gap-2 col-12 border rounded-3 py-2">
-                        {% for previous_verification in previous_verifications %}
-                            <div class="row mx-0 col-12 p-0">
-                                <div class="col-12 text-warning text-capitalize text-end fw-bold fs-5 m-0">
-                                    <span class="m-0">True</span>
+                    {% if previous_verifications %}
+                        <div class="col-12">
+                            <h3 class="fs-4 text-capitalize text-center m-0 text-white fw-bold">Recent news validation history</h3>
+                        </div>
+                        <div class="row mx-0 gap-2 col-12 border rounded-3 py-2">
+                            {% for previous_verification in previous_verifications %}
+                                <div class="row mx-0 col-12 p-0">
+                                    <div class="col-12 text-warning text-capitalize text-end fw-bold fs-5 m-0">
+                                        <span class="m-0">True</span>
+                                    </div>
+                                    <div class="row m-0 p-0 gap-2 col-12">
+                                        <div class="col-12 d-flex align-items-lg-center align-items-start flex-column flex-lg-row gap-2 p-0 px-lg-1">
+                                            <h5 class="text-white fw-normal fs-5 text-capitalize m-0">News title :</h5>
+                                            <span class="m-0 text-capitalize body-text">{{ previous_verification.news_heading }}</span>
+                                        </div>
+                                        <div class="col-12 d-flex align-items-lg-center align-items-start flex-column flex-lg-row gap-2 p-0 px-lg-1">
+                                            <h5 class="text-white fw-normal fs-5 text-capitalize m-0">News source :</h5>
+                                            <span class="m-0 text-capitalize body-text">{{ previous_verification.news_source }}</span>
+                                        </div>
+                                        <div class="col-12 d-flex align-items-lg-center align-items-start flex-column flex-lg-row gap-2 p-0 px-lg-1">
+                                            <h5 class="text-white fw-normal fs-5 text-capitalize m-0">News link :</h5>
+                                            <span class="m-0 body-text text-lowercase link">{{ previous_verification.news_url }}</span>
+                                        </div>
+                                        <div class="col-12 d-flex  align-items-start flex-column flex-lg-row gap-2 p-0 px-lg-1">
+                                            <h5 class="text-white fw-normal fs-5 text-capitalize m-0">content from link :</h5>
+                                            <span class="m-0 text-capitalize col-lg-9 col-12 body-text">{{ previous_verification.link_content }}</span>
+                                        </div>
+                                        <div class="col-12 d-flex  align-items-start flex-column flex-lg-row gap-2 p-0 px-lg-1">
+                                            <h5 class="text-white fw-normal fs-5 text-capitalize m-0">news validation result :</h5>
+                                            <span class="m-0 text-capitalize col-lg-8 col-12 body-text">{{ previous_verification.news_result }}</span>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="row m-0 p-0 gap-2 col-12">
-                                    <div class="col-12 d-flex align-items-lg-center align-items-start flex-column flex-lg-row gap-2 p-0 px-lg-1">
-                                        <h5 class="text-white fw-normal fs-5 text-capitalize m-0">News title :</h5>
-                                        <span class="m-0 text-capitalize body-text">{{ previous_verification.news_heading }}</span>
-                                    </div>
-                                    <div class="col-12 d-flex align-items-lg-center align-items-start flex-column flex-lg-row gap-2 p-0 px-lg-1">
-                                        <h5 class="text-white fw-normal fs-5 text-capitalize m-0">News source :</h5>
-                                        <span class="m-0 text-capitalize body-text">{{ previous_verification.news_source }}</span>
-                                    </div>
-                                    <div class="col-12 d-flex align-items-lg-center align-items-start flex-column flex-lg-row gap-2 p-0 px-lg-1">
-                                        <h5 class="text-white fw-normal fs-5 text-capitalize m-0">News link :</h5>
-                                        <span class="m-0 body-text text-lowercase link">{{ previous_verification.news_url }}</span>
-                                    </div>
-                                    <div class="col-12 d-flex  align-items-start flex-column flex-lg-row gap-2 p-0 px-lg-1">
-                                        <h5 class="text-white fw-normal fs-5 text-capitalize m-0">content from link :</h5>
-                                        <span class="m-0 text-capitalize col-lg-9 col-12 body-text">{{ previous_verification.link_content }}</span>
-                                    </div>
-                                    <div class="col-12 d-flex  align-items-start flex-column flex-lg-row gap-2 p-0 px-lg-1">
-                                        <h5 class="text-white fw-normal fs-5 text-capitalize m-0">news validation result :</h5>
-                                        <span class="m-0 text-capitalize col-lg-8 col-12 body-text">{{ previous_verification.news_result }}</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr class="text-white my-2">
-                        {% endfor %}
-                    </div>
+                                <hr class="text-white my-2">
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-white">
+                            <h3 class="m-0 fs-6">You haven't perform any verification yet</h3>
+                        </div>
+                    {% endif %}
                 </div>
                 <div class="text-white col-lg-4 col-12 text-center text-fs">
                     <span>&copy;<span id="year"></span> Detect Fake News. Right reserved</span>
