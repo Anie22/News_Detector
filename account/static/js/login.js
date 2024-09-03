@@ -5,9 +5,11 @@ const error = document.getElementById('warning');
 const error2 = document.getElementById('warning2');
 const model = document.getElementById('model');
 const msg = document.getElementById('msg');
+const buttonHolder =  document.getElementById('button')
 
 model.style.display = 'none'
 
+buttonHolder.innerHTML = `<button type="submit" class="bg-warning border-0 rounded-3 button col-12 fs-5 fw-semibold">Login</button>`
 form.addEventListener('submit', (e) => {
     e.preventDefault();
 
@@ -18,19 +20,26 @@ form.addEventListener('submit', (e) => {
         error.textContent = 'Input Required';
         hasError = true;
     } else {
-        error3.textContent = '';
+        error.textContent = '';
     }
 
     if(password.value.trim() === '') {
         error2.textContent = 'Input Required';
         hasError = true;
     } else {
-        error4.textContent = '';
+        error2.textContent = '';
     }
 
     if(!hasError) {
         // Create an object with the form data
         const formData = new FormData(form);
+
+        buttonHolder.innerHTML = `
+                                <div class="loader rounded-3">
+                                    <div class="loader-box d-flex align-items-center justify-content-center">
+                                        <div class="load"></div>
+                                    </div>
+                                </div>`
 
         // Send an AJAX request to the server
         fetch('', {
@@ -46,6 +55,7 @@ form.addEventListener('submit', (e) => {
             if (data.message) {
                 model.style.display = 'flex'
                 msg.textContent = data.message
+                buttonHolder.innerHTML = `<button type="submit" class="bg-warning border-0 rounded-3 button col-12 fs-5 fw-semibold">Login</button>`
             }
 
             if (data.message === 'Login successfully') {

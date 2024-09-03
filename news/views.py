@@ -14,22 +14,37 @@ def NewsDetection(request):
         news_source = request.POST.get('news_source')
         news_url = request.POST.get('news_url')
 
-        heading = NewsDetector.objects.filter(news_heading=news_heading).exists()
-        source = NewsDetector.objects.filter(news_source=news_source).exists()
-        url = NewsDetector.objects.filter(news_url=news_url).exists()
+        newsCon = NewsDetector.objects.filter(news_heading=news_heading, news_source=news_source, news_url=news_url, user=request.user).exists()
 
-        if user:
-            if heading and source and url:
-                return JsonResponse({'message':'This content have already been verified by you check history'}, status=404)
-            else:
-                news = NewsDetector.objects.create(news_heading=news_heading, news_source=news_source, news_url=news_url, user=user)
-                news.content = get_content_from_link(news_url)
-                news.save()
-                return JsonResponse({'message':'Saved and under verification'}, status=201)
+        content = get_content_from_link(news_url)
+
+        if newsCon:
+            return JsonResponse({'message':'This content have already been verified by you check history'}, status=404)
+
+        if news_heading.lower() in content.lower() and news_source.lower() in content.lower():
+            news = NewsDetector.objects.create(news_heading=news_heading, news_source=news_source, news_url=news_url, user=user)
+            news.link_content = get_content_from_link(news_url, news.id)
+            news.save()
+            return JsonResponse({'message':'Saved and under verification'}, status=201)
+        else:
+            return JsonResponse({'message':'Contents does not match'}, status=404)
     return render(request, 'news.html')
 
+@login_required(login_url='/account/login')
 def history(request):
-    return render(request, 'history.html')
+    previous_verifications = NewsDetector.objects.all()
 
+    previous_verifications = NewsDetector.objects.filter(
+        user=request.user,
+        news_heading__isnull=False,
+        news_source__isnull=False,
+        news_url__isnull=False,
+        link_content__isnull=False,
+        news_result__isnull=False,
+        checked_on__isnull=False,
+    )
+    return render(request, 'history.html', {'previous_verifications':previous_verifications})
+
+@login_required(login_url='/account/login')
 def results(request):
     return render(request, 'results.html')

@@ -46,10 +46,9 @@ def loginView(request):
         password = request.POST.get('password')
 
         User = authenticate(request, email=email, password=password)
-        if User is not None:
+        if User:
             login(request, User)
             return JsonResponse({'message': 'Login successfully'}, status=200)
-            return redirect('news:news_app')
         return JsonResponse({'message': 'User does not exist'}, status=404)
 
     if request.user.is_authenticated:

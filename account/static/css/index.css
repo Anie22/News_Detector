@@ -1,3 +1,6 @@
+.form-container{
+    height: 100vh;
+}
 .form-contain{
     height: 100vh;
 }
@@ -72,5 +75,10 @@ fieldset{
         border-bottom: 4px solid #ffffff;
     } 100%{
         transform: rotate(360deg);
+    }
+}
+@media only screen and (max-width: 900px) {
+    .form-container{
+        height: 100%;
     }
 }
