@@ -17,21 +17,21 @@ def get_content_from_link(news_url):
     data = requests.get(news_url)
     data_content = BeautifulSoup(data.content, 'html.parser')
     text = data_content.get_text(separator=' ', strip=True)
-    # token_word = word_token(text)
-    return text
+    token_word = word_token(text)
+    return token_word
 
 #
-# def word_token(text):
-#     words = word_tokenize(text)
-#     stop_words = set(stopwords.words('english'))
-#     word_text = [word for word in words if word.isalnum() and word not in stop_words]
-#     join_words = ' '.join(word_text)
-#     gemini_prompt(join_words)
-#     return text
+def word_token(text):
+    words = word_tokenize(text)
+    stop_words = set(stopwords.words('english'))
+    word_text = [word for word in words if word.isalnum() and word not in stop_words]
+    join_words = ' '.join(word_text)
+    gemini_prompt(join_words)
+    return text
 
 # Sends the generated prompt to gemini
-# def gemini_prompt(join_words):
-#     model = genai.GenerativeModel(model_name="gemini-1.5-flash")
-#     response = model.generate_content(["Is this news true", join_words])
-#     print(response.text)
-#     return response.text
+def gemini_prompt(join_words):
+    model = genai.GenerativeModel(model_name="gemini-1.5-flash")
+    response = model.generate_content(["Is this news true", join_words])
+    print(response.text)
+    return response.text

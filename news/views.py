@@ -23,7 +23,7 @@ def NewsDetection(request):
 
         if news_heading.lower() in content.lower() and news_source.lower() in content.lower():
             news = NewsDetector.objects.create(news_heading=news_heading, news_source=news_source, news_url=news_url, user=user)
-            news.link_content = get_content_from_link(news_url, news.id)
+            news.link_content = get_content_from_link(news_url)
             news.save()
             return JsonResponse({'message':'Saved and under verification'}, status=201)
         else:
