@@ -32,5 +32,5 @@ def word_token(text):
 # Sends the generated prompt to gemini
 def gemini_prompt(join_words):
     model = genai.GenerativeModel(model_name="gemini-1.5-flash")
-    response = model.generate_content(["Is this news true", join_words])
+    response = model.generate_content(["Is this news true?", join_words])
     return response.text

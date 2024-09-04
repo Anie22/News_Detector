@@ -23,9 +23,12 @@ def NewsDetection(request):
 
         # Get the content read from the link or url
         content = get_content_from_link(news_url).strip().lower()
+        text = content
+
+        join_words = word_token(text)
 
         # Get the Gemini AI result
-        gemini_result = gemini_prompt()
+        gemini_result = gemini_prompt(join_words)
 
         # Checks if the input have been validated by the user before
         if newsCon:
@@ -47,7 +50,7 @@ def NewsDetection(request):
             news.save()
 
             # Ensure any previous result is deleted before saving a new one
-            result.objects.filter(newsid=news).delete()
+            result.objects.filter(user=user).delete()
 
             result_entry = result.objects.create(
                 news_result=gemini_result,
