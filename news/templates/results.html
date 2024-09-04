@@ -14,13 +14,31 @@
                     <div class="py-2">
                         <span class="fs-5 text-warning m-0"><span class="fs-4 m-0 text-white" id="greeting"></span> {{request.user}}</span>
                     </div>
-                </div><div class="row gap-2 px-lg-2 p-0 col-lg-9 col-12 py-2">
-                    <div class="col-12 text-center row m-0 p-0 gap-2">
-                        <h3 class="fs-4 text-capitalize text-center m-0 text-white fw-bold">Results for the news</h3>
-                        <span class="m-0 fs-6 text-white">"kffjfjfjfj"</span>
-                    </div>
                 </div>
-                <div class="text-white col-lg-4 col-12 text-center text-fs">
+                <div class="row gap-2 px-lg-2 p-0 col-lg-9 col-12 py-2">
+                    {% if results %}
+                        <div class="col-12 text-center row m-0 p-0 gap-2">
+                            <h3 class="fs-4 text-capitalize text-center m-0 text-white fw-bold">Results for the news</h3>
+                            {% for result in results %}
+                                <span class="m-0 fs-6 text-white">"{{ result.newsid.news_heading }}"</span>
+                            {% endfor %}
+                        </div>
+                        <div class="row mx-0 gap-2 col-12 border rounded-3 py-2">
+                            {% for result in results %}
+                                <div class="col-12 d-flex align-items-start flex-row gap-2 p-0 px-lg-1 conti">
+                                    <span class="m-0 text-capitalize col-12 body-text">{{ result.news_result }}</span>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% else %}
+                        <div class="text-white col-12 text-center cont">
+                            <h3 class="mt-5 fs-5">You haven't perform any verification yet</h3>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="row gap-2 px-lg-2 p-0 col-lg-9 col-12 py-2">
+                </div>
+                <div class="text-white col-lg-4 col-12 text-center text-fs py-2">
                     <span>&copy;<span id="year"></span> Detect Fake News. Right reserved</span>
                 </div>
             </div>
