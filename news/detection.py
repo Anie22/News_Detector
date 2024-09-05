@@ -7,6 +7,7 @@ from nltk.corpus import stopwords
 from news.models import NewsDetector
 import google.generativeai as genai
 
+nltk.download('punkt')
 nltk.download('stopwords')
 nltk.download('punkt_tab')
 
